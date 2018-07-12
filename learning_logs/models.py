@@ -9,4 +9,13 @@ class Topic(models.Model):
 		return self.text
 class Entry(models.Model):
 	"""学习到的具体知识"""
+	topic = models.ForeignKey(Topic,on_delete=models.CASCADE)
+	text = models.TextField()
+	date_added = models.DateTimeField(auto_now_add = True)
+	
+	class Meta:
+		verbose_name_plural = 'entries'
+		
+	def __str__(self):
+		return self.text[:50] + "..."
 # Create your models here.
